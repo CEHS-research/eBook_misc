@@ -1,0 +1,22 @@
+# Survival Analysis Basics
+
+```{block type='rmdconstruct', echo=TRUE}
+This was started Fall 2020.
+```
+
+
+
+
+```{block type='rmddownload', echo=TRUE}
+Tutorials Point: [R- Survival Analysis](https://www.tutorialspoint.com/r/r_survival_analysis.htm)  <-- Basics
+
+
+Emily C. Sabor: [Survival Analysis in R](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
+
+
+Package (`survival`) Vignette: [A package for survival analysis in R](https://cran.r-project.org/web/packages/survival/vignettes/survival.pdf)  
+
+
+THRIV: [Survival Analysis with R](https://thriv.github.io/biodatasci2018/r-survival.html)
+
+```
