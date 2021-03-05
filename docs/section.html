@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3  | Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics</title>
+  <meta name="description" content="Room for Future Expansion." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3  | Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="EQM_v1_cover.png" />
+  <meta property="og:description" content="Room for Future Expansion." />
+  <meta name="github-repo" content="cehs-research/eBook_wrangle" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3  | Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics" />
+  
+  <meta name="twitter:description" content="Room for Future Expansion." />
+  <meta name="twitter:image" content="EQM_v1_cover.png" />
+
+<meta name="author" content="Sarah Schwartz &amp; Tyson Barrett" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="missing-data-explore-patterns-and-test-associations.html"/>
+<link rel="next" href="multivariate-imputation-by-chained-equations-mice.html"/>
+<script src="libs/header-attrs-2.6.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="heading.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Vol. 7: Additional Topics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#blocked-notes"><i class="fa fa-check"></i>Blocked Notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#code-and-output"><i class="fa fa-check"></i>Code and Output</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-authors"><i class="fa fa-check"></i>The Authors</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-choose-r"><i class="fa fa-check"></i>Why choose R ?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fyi"><i class="fa fa-check"></i>FYI</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="survival-analysis-basics.html"><a href="survival-analysis-basics.html"><i class="fa fa-check"></i><b>1</b> Survival Analysis Basics</a></li>
+<li class="chapter" data-level="2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html"><i class="fa fa-check"></i><b>2</b> Missing Data: Explore Patterns and Test Associations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load Packages</a></li>
+<li class="chapter" data-level="2.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#dataset-orientation"><i class="fa fa-check"></i><b>2.2</b> Dataset Orientation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#dimentions"><i class="fa fa-check"></i><b>2.2.1</b> Dimentions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#variable-names"><i class="fa fa-check"></i><b>2.2.2</b> Variable Names</a></li>
+<li class="chapter" data-level="2.2.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#structure"><i class="fa fa-check"></i><b>2.2.3</b> Structure</a></li>
+<li class="chapter" data-level="2.2.4" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#glimpse"><i class="fa fa-check"></i><b>2.2.4</b> Glimpse</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#create-smoking-variable"><i class="fa fa-check"></i><b>2.3</b> Create Smoking Variable</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#smoking---mcar"><i class="fa fa-check"></i><b>2.3.1</b> Smoking - MCAR</a></li>
+<li class="chapter" data-level="2.3.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#smoking---mar"><i class="fa fa-check"></i><b>2.3.2</b> Smoking - MAR</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#types-of-missing-data"><i class="fa fa-check"></i><b>2.4</b> Types of Missing Data</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#missing-completely-at-random-mcar"><i class="fa fa-check"></i><b>2.4.1</b> Missing Completely at Random (MCAR)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#missing-at-random-mar"><i class="fa fa-check"></i><b>2.4.2</b> Missing at Random (MAR)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#not-missing-at-random-nmar"><i class="fa fa-check"></i><b>2.4.3</b> Not Missing at Random (NMAR)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#tabulate-missing-ness"><i class="fa fa-check"></i><b>2.5</b> Tabulate Missing-ness</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#funrnituretable1"><i class="fa fa-check"></i><b>2.5.1</b> <code>funrniture::table1()</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitff_glimpse"><i class="fa fa-check"></i><b>2.5.2</b> <code>finalfit::ff_glimpse()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#plot-missing-ness"><i class="fa fa-check"></i><b>2.6</b> Plot Missing-ness</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitmissing_plot"><i class="fa fa-check"></i><b>2.6.1</b> <code>finalfit::missing_plot()</code></a></li>
+<li class="chapter" data-level="2.6.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#vimaggr"><i class="fa fa-check"></i><b>2.6.2</b> <code>VIM::aggr()</code></a></li>
+<li class="chapter" data-level="2.6.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitmissing_pairs"><i class="fa fa-check"></i><b>2.6.3</b> <code>finalfit::missing_pairs()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>3</b> </a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="section.html"><a href="section.html#missmechtestmcarnormality"><i class="fa fa-check"></i><b>3.0.1</b> <code>MissMech::TestMCARNormality()</code></a></li>
+<li class="chapter" data-level="3.0.2" data-path="section.html"><a href="section.html#littles-test-revised-littlemcar"><i class="fa fa-check"></i><b>3.0.2</b> Little’s Test, revised ‘LittleMCAR’</a></li>
+<li class="chapter" data-level="3.1" data-path="section.html"><a href="section.html#test-associations-mar"><i class="fa fa-check"></i><b>3.1</b> Test Associations (MAR)</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="section.html"><a href="section.html#finalfitmissing_compare"><i class="fa fa-check"></i><b>3.1.1</b> <code>finalfit::missing_compare()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html"><i class="fa fa-check"></i><b>4</b> Multivariate Imputation by Chained Equations (MICE)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#the-mice-package"><i class="fa fa-check"></i><b>4.1</b> The <code>mice</code> package</a></li>
+<li class="chapter" data-level="4.2" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#multiple-impute-the-missing-values"><i class="fa fa-check"></i><b>4.2</b> multiple impute the missing values</a></li>
+<li class="chapter" data-level="4.3" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#run-the-model-on-each-imputate-datset"><i class="fa fa-check"></i><b>4.3</b> Run the model on each imputate datset</a></li>
+<li class="chapter" data-level="4.4" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#pool-the-results-into-one-set-of-results"><i class="fa fa-check"></i><b>4.4</b> pool the results into one set of results</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> </h1>
+<p>3Test for Equality of Covariance (MCAR)</p>
+<div id="missmechtestmcarnormality" class="section level3" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> <code>MissMech::TestMCARNormality()</code></h3>
+<p>The main purpose of this package is to test whether the missing data mechanism, for an incompletely observed data set, is one of <strong>missing completely at random (MCAR)</strong>.</p>
+<p>As a by product, however, this package has the capabilities of :
+* imputing incomplete data
+* performing a test to determine whether data have a multivariate normal distribution
+* performing a test of equality of covariances for groups
+* obtaining normal-theory maximum likelihood estimates for mean and covariance when data are incomplete.</p>
+<p>The <strong>test of MCAR</strong> follows the methodology proposed by <em>Jamshidian and Jalal (2010)</em>. It is based on testing <strong>equality of covariances between groups having identical missing data patterns</strong>.</p>
+<p>The data are imputed, using two options of normality and distribution free, and the <strong>test of equality of covariances</strong> between groups with identical missing data patterns is performed also with options of assuming normality (Hawkins test) or non-parametrically.</p>
+<p>Users can optionally use their own method of data imputation as well.</p>
+<p>Multiple imputation is an additional feature of the program that can be used as a diagnostic tool to help identify cases or variables that <strong>contribute to rejection of MCAR</strong>, when the MCAR test is rejected <em>(See Jamshidian and Jalal, 2010 for details)</em>.</p>
+<p>As explained in <em>Jamshidian, Jalal, and Jansen (2014)</em>, this package can also be used for imputing missing data, test of multivariate normality, and test of equality of covariances between several groups when data are completely observed.</p>
+<blockquote>
+<p>Jamshidian, M. and Bentler, P. M. (1999). “ML estimation of mean and covariance structures with missing data using complete data routines.” Journal of Educational and Behavioral Statistics, 24, 21-41.</p>
+</blockquote>
+<blockquote>
+<p>Jamshidian, M. and Jalal, S. (2010). “Tests of homoscedasticity, normality, and missing at random for incomplete multivariate data,” Psychometrika, 75, 649-674.</p>
+</blockquote>
+<blockquote>
+<p>Jamshidian, M. Jalal, S., and Jansen, C. (2014). “ MissMech: An R Package for Testing Homoscedasticity, Multivariate Normality, and Missing Completely at Random (MCAR),” Journal of Statistical Software, 56(6), 1-31.</p>
+</blockquote>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="section.html#cb33-1" aria-hidden="true" tabindex="-1"></a>colon_s <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="section.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(age, sex.factor, nodes, extent.factor, perfor.factor,</span>
+<span id="cb33-3"><a href="section.html#cb33-3" aria-hidden="true" tabindex="-1"></a>                mort_5yr, smoking_mcar, smoking_mar) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="section.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_all</span>(as.numeric) <span class="sc">%&gt;%</span>   <span class="co"># categorical variables must be changed to numeric</span></span>
+<span id="cb33-5"><a href="section.html#cb33-5" aria-hidden="true" tabindex="-1"></a>  MissMech<span class="sc">::</span><span class="fu">TestMCARNormality</span>()</span></code></pre></div>
+<pre><code>## Call:
+## MissMech::TestMCARNormality(data = .)
+## 
+## Number of Patterns:  6 
+## 
+## Total number of cases used in the analysis:  918 
+## 
+##  Pattern(s) used:
+##           age   sex.factor   nodes   extent.factor   perfor.factor   mort_5yr
+## group.1     1            1       1               1               1          1
+## group.2     1            1       1               1               1          1
+## group.3     1            1       1               1               1          1
+## group.4     1            1      NA               1               1          1
+## group.5     1            1       1               1               1         NA
+## group.6     1            1       1               1               1          1
+##           smoking_mcar   smoking_mar   Number of cases
+## group.1              1             1               604
+## group.2              1            NA               199
+## group.3             NA             1                74
+## group.4              1             1                11
+## group.5              1             1                10
+## group.6             NA            NA                20
+## 
+## 
+##     Test of normality and Homoscedasticity:
+##   -------------------------------------------
+## 
+## Hawkins Test:
+## 
+##     P-value for the Hawkins test of normality and homoscedasticity:  1.937163e-34 
+## 
+##     Either the test of multivariate normality or homoscedasticity (or both) is rejected.
+##     Provided that normality can be assumed, the hypothesis of MCAR is 
+##     rejected at 0.05 significance level. 
+## 
+## Non-Parametric Test:
+## 
+##     P-value for the non-parametric test of homoscedasticity:  1.789557e-08 
+## 
+##     Hypothesis of MCAR is rejected at  0.05 significance level.
+##     The multivariate normality test is inconclusive.</code></pre>
+<p><strong>Conclusion:</strong> This provides evidence that missing data on the variables included in this test are <strong>NOT</strong> missing completely at random MCAR by Hawkins test, <span class="math inline">\(p &lt; .001\)</span>. Note, the non-parametric test is also able to reach this conclusion, <span class="math inline">\(p &lt; .001\)</span>.</p>
+</div>
+<div id="littles-test-revised-littlemcar" class="section level3" number="3.0.2">
+<h3><span class="header-section-number">3.0.2</span> Little’s Test, revised ‘LittleMCAR’</h3>
+<blockquote>
+<p><a href="https://stats-bayes.com/post/2020/08/14/r-function-for-little-s-test-for-data-missing-completely-at-random/">“R-function for Little’s test for data missing completely at random” by Eric Stemmler (2020/08/14)</a></p>
+</blockquote>
+<p>Little’s test basically compares the estimated means of each variable between the different missing patterns. These leads to either the decision to use simple random imputation or to model the missingness mechanism and use that model for imputation. The former is appropriate if one can be certain that the means are not different for different missingness patterns, i.e. a non-significant result of the Little’s test. For a more detailed explanation about the different types of missingness <em>(see Gelman and Hill, 2006)</em>.</p>
+<p>Little himself “… expect[s] the test to be sensitive to departures from the normality assumption, and even under normality the asymptotic null distribution seems unlikely to be reliable unless the sample size is large.” (Little 1988).</p>
+<blockquote>
+<p>Gelman, Andrew, and Jennifer Hill. 2006. Data Analysis Using Regression and Multilevel/Hierarchical Models. Cambridge university press.</p>
+</blockquote>
+<blockquote>
+<p>Little, Roderick JA. 1988. “A Test of Missing Completely at Random for Multivariate Data with Missing Values.” Journal of the American Statistical Association 83 (404). Taylor &amp; Francis: 1198–1202.</p>
+</blockquote>
+<p>Statistical inference based on incomplete data typically involves certain assumptions for the missing data mechanism. The validity of these assumptions requires formal evaluation before any further analysis.</p>
+<p>For example, likelihood based inference is valid only if the missing data mechanism is ignorable (Rubin 1976), which usually relies on the missing at random assumption (MAR). MAR assumes that the missingness of the data may depend on the observed data, but is independent of the unobserved data. Therefore testing MAR is in general impossible since it requires unavailable information about the missing data.</p>
+<p>Instead, the missing completely at random assumption (MCAR) assumes that the missingness of the data is independent of both the observed and unobserved data, which is stronger than MAR and possible to test using only the observed data.</p>
+<p>When missing data mechanism depends on the unobserved data, data are missing not at random (MNAR). Although the likelihood inference only requires the MAR assumption, testing of MCAR is still of interest in real applications, since many simple missing data methods such as complete case analysis are valid only under MCAR (Chapter 3 of Little and Rubin 1987, also see the blood test example in Section 4). Also the maximum likelihood estimation for the multivariate normal model may be more sensitive to the distributional assumption when the data are not MCAR (Little 1988).</p>
+<blockquote>
+<p>GitHub repository: <a href="https://github.com/rcst/little-test" class="uri">https://github.com/rcst/little-test</a></p>
+</blockquote>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="section.html#cb35-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">source_url</span>(<span class="st">&quot;https://raw.githubusercontent.com/rcst/little-test/master/mcar.R&quot;</span>)</span></code></pre></div>
+<pre><code>## SHA-1 hash of file is 294bccdf1f2f0f3c5589b0cbcbb428aab2dcd6d8</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="section.html#cb37-1" aria-hidden="true" tabindex="-1"></a>littletest_mcar <span class="ot">&lt;-</span> colon_s <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="section.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, </span>
+<span id="cb37-3"><a href="section.html#cb37-3" aria-hidden="true" tabindex="-1"></a>                mort_5yr, smoking_mcar, smoking_mar,) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="section.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mcar</span>()</span></code></pre></div>
+<pre><code>## Iterations of EM: 
+## 1...2...3...4...5...6...7...
+## this could take a while</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="section.html#cb39-1" aria-hidden="true" tabindex="-1"></a>littletest_mcar<span class="sc">$</span>missing.patterns</span></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="section.html#cb41-1" aria-hidden="true" tabindex="-1"></a>littletest_mcar<span class="sc">$</span>amount.missing</span></code></pre></div>
+<pre><code>##                 age sex.factor       nodes extent.factor perfor.factor
+## Number Missing    0          0 18.00000000             0             0
+## Percent Missing   0          0  0.01937567             0             0
+##                 obstruct.factor    mort_5yr smoking_mcar smoking_mar
+## Number Missing      21.00000000 14.00000000   98.0000000 227.0000000
+## Percent Missing      0.02260495  0.01506997    0.1054898   0.2443488</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="section.html#cb43-1" aria-hidden="true" tabindex="-1"></a>littletest_mcar<span class="sc">$</span>chi.square</span></code></pre></div>
+<pre><code>## [1] 171.9229</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="section.html#cb45-1" aria-hidden="true" tabindex="-1"></a>littletest_mcar<span class="sc">$</span>df</span></code></pre></div>
+<pre><code>## [1] 95</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="section.html#cb47-1" aria-hidden="true" tabindex="-1"></a>littletest_mcar<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 2.309862e-06</code></pre>
+<p><strong>Conclusion:</strong> This provides evidence that missing data on the variables included in this test are <strong>NOT</strong> missing completely at random MCAR), <span class="math inline">\(\chi^2(95) = 172.92, p &lt; .001\)</span>. Note, this test does not tell you WHICH variables are asociated.</p>
+</div>
+<div id="test-associations-mar" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Test Associations (MAR)</h2>
+<div id="finalfitmissing_compare" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> <code>finalfit::missing_compare()</code></h3>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="section.html#cb49-1" aria-hidden="true" tabindex="-1"></a>colon_s <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="section.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  finalfit<span class="sc">::</span><span class="fu">missing_compare</span>(<span class="at">explanatory =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex.factor&quot;</span>, <span class="st">&quot;nodes&quot;</span>, <span class="st">&quot;extent.factor&quot;</span>, <span class="st">&quot;perfor.factor&quot;</span>, </span>
+<span id="cb49-3"><a href="section.html#cb49-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;smoking_mcar&quot;</span>, <span class="st">&quot;smoking_mar&quot;</span>),</span>
+<span id="cb49-4"><a href="section.html#cb49-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">dependent =</span> <span class="st">&quot;mort_5yr&quot;</span>)</span></code></pre></div>
+<pre><code>##  Missing data analysis: Mortality 5 year                     Not missing
+##                              Age (years)           Mean (SD) 59.8 (11.9)
+##                                      Sex              Female  437 (98.2)
+##                                                         Male  478 (98.8)
+##                                    nodes           Mean (SD)   3.7 (3.6)
+##                         Extent of spread           Submucosa   20 (95.2)
+##                                                       Muscle  103 (97.2)
+##                                                       Serosa  750 (98.8)
+##                                          Adjacent structures   42 (97.7)
+##                              Perforation                  No  888 (98.4)
+##                                                          Yes  27 (100.0)
+##                             smoking_mcar          Non-smoker  636 (98.6)
+##                                                       Smoker  183 (98.4)
+##                              smoking_mar          Non-smoker  565 (98.6)
+##                                                       Smoker  125 (96.9)
+##      Missing     p
+##  53.9 (12.7) 0.066
+##      8 (1.8) 0.669
+##      6 (1.2)      
+##    2.9 (2.8) 0.441
+##      1 (4.8) 0.325
+##      3 (2.8)      
+##      9 (1.2)      
+##      1 (2.3)      
+##     14 (1.6) 1.000
+##      0 (0.0)      
+##      9 (1.4) 1.000
+##      3 (1.6)      
+##      8 (1.4) 0.330
+##      4 (3.1)</code></pre>
+<p><strong>Conclusion:</strong> There is no evidence that missingness in the five year mortality is associated with any of the variables: age, sex, extent of spread, perforation, and smoking (either varaible), <span class="math inline">\(p&#39;s &gt; .066\)</span>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="section.html#cb51-1" aria-hidden="true" tabindex="-1"></a>colon_s <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="section.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  finalfit<span class="sc">::</span><span class="fu">missing_compare</span>(<span class="at">explanatory =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex.factor&quot;</span>, <span class="st">&quot;nodes&quot;</span>, <span class="st">&quot;extent.factor&quot;</span>, <span class="st">&quot;perfor.factor&quot;</span>, </span>
+<span id="cb51-3"><a href="section.html#cb51-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;mort_5yr&quot;</span>, <span class="st">&quot;smoking_mar&quot;</span>),</span>
+<span id="cb51-4"><a href="section.html#cb51-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">dependent =</span> <span class="st">&quot;smoking_mcar&quot;</span>)</span></code></pre></div>
+<pre><code>##  Missing data analysis: smoking_mcar                     Not missing
+##                          Age (years)           Mean (SD) 59.7 (12.0)
+##                                  Sex              Female  400 (89.9)
+##                                                     Male  431 (89.0)
+##                                nodes           Mean (SD)   3.7 (3.6)
+##                     Extent of spread           Submucosa   19 (90.5)
+##                                                   Muscle   92 (86.8)
+##                                                   Serosa  682 (89.9)
+##                                      Adjacent structures   38 (88.4)
+##                          Perforation                  No  806 (89.4)
+##                                                      Yes   25 (92.6)
+##                     Mortality 5 year               Alive  456 (89.2)
+##                                                     Died  363 (89.9)
+##                          smoking_mar          Non-smoker  510 (89.0)
+##                                                   Smoker  115 (89.1)
+##      Missing     p
+##  60.1 (11.8) 0.768
+##    45 (10.1) 0.758
+##    53 (11.0)      
+##    3.6 (3.7) 0.920
+##      2 (9.5) 0.801
+##    14 (13.2)      
+##    77 (10.1)      
+##     5 (11.6)      
+##    96 (10.6) 0.825
+##      2 (7.4)      
+##    55 (10.8) 0.847
+##    41 (10.1)      
+##    63 (11.0) 1.000
+##    14 (10.9)</code></pre>
+<p><strong>Conclusion:</strong> There is no evidence that missingness in the smoking variable (MCAR version) is associated with any of the variables: age, sex, extent of spread, and perforation, <span class="math inline">\(p&#39;s &gt; .758\)</span>.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="section.html#cb53-1" aria-hidden="true" tabindex="-1"></a>colon_s <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="section.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  finalfit<span class="sc">::</span><span class="fu">missing_compare</span>(<span class="at">explanatory =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex.factor&quot;</span>, <span class="st">&quot;nodes&quot;</span>, <span class="st">&quot;extent.factor&quot;</span>, <span class="st">&quot;perfor.factor&quot;</span>, </span>
+<span id="cb53-3"><a href="section.html#cb53-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="st">&quot;mort_5yr&quot;</span>, <span class="st">&quot;smoking_mcar&quot;</span>),</span>
+<span id="cb53-4"><a href="section.html#cb53-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">dependent =</span> <span class="st">&quot;smoking_mar&quot;</span>)</span></code></pre></div>
+<pre><code>##  Missing data analysis: smoking_mar                     Not missing     Missing
+##                         Age (years)           Mean (SD) 59.8 (11.8) 59.7 (12.4)
+##                                 Sex              Female  276 (62.0)  169 (38.0)
+##                                                    Male  426 (88.0)   58 (12.0)
+##                               nodes           Mean (SD)   3.5 (3.2)   4.2 (4.6)
+##                    Extent of spread           Submucosa   16 (76.2)    5 (23.8)
+##                                                  Muscle   76 (71.7)   30 (28.3)
+##                                                  Serosa  577 (76.0)  182 (24.0)
+##                                     Adjacent structures   33 (76.7)   10 (23.3)
+##                         Perforation                  No  684 (75.8)  218 (24.2)
+##                                                     Yes   18 (66.7)    9 (33.3)
+##                    Mortality 5 year               Alive  390 (76.3)  121 (23.7)
+##                                                    Died  300 (74.3)  104 (25.7)
+##                        smoking_mcar          Non-smoker  490 (76.0)  155 (24.0)
+##                                                  Smoker  135 (72.6)   51 (27.4)
+##       p
+##   0.897
+##  &lt;0.001
+##        
+##   0.007
+##   0.806
+##        
+##        
+##        
+##   0.387
+##        
+##   0.521
+##        
+##   0.397
+## </code></pre>
+<p><strong>Conclusion:</strong> There is evidence that missingness in the smoking variable (MAR version) is associated with sex, <span class="math inline">\(p &lt; .001\)</span>. We can see there there is a much higher percent of missing values for females (38%) compared to males (12%).</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="missing-data-explore-patterns-and-test-associations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariate-imputation-by-chained-equations-mice.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

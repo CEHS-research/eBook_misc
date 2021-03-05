@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>References | Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics</title>
   <meta name="description" content="Room for Future Expansion." />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="References | Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics" />
   <meta property="og:type" content="book" />
@@ -30,9 +30,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="survival-analysis-basics.html"/>
+<link rel="prev" href="multivariate-imputation-by-chained-equations-mice.html"/>
 
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -147,6 +146,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="survival-analysis-basics.html"><a href="survival-analysis-basics.html"><i class="fa fa-check"></i><b>1</b> Survival Analysis Basics</a></li>
+<li class="chapter" data-level="2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html"><i class="fa fa-check"></i><b>2</b> Missing Data: Explore Patterns and Test Associations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load Packages</a></li>
+<li class="chapter" data-level="2.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#dataset-orientation"><i class="fa fa-check"></i><b>2.2</b> Dataset Orientation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#dimentions"><i class="fa fa-check"></i><b>2.2.1</b> Dimentions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#variable-names"><i class="fa fa-check"></i><b>2.2.2</b> Variable Names</a></li>
+<li class="chapter" data-level="2.2.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#structure"><i class="fa fa-check"></i><b>2.2.3</b> Structure</a></li>
+<li class="chapter" data-level="2.2.4" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#glimpse"><i class="fa fa-check"></i><b>2.2.4</b> Glimpse</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#create-smoking-variable"><i class="fa fa-check"></i><b>2.3</b> Create Smoking Variable</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#smoking---mcar"><i class="fa fa-check"></i><b>2.3.1</b> Smoking - MCAR</a></li>
+<li class="chapter" data-level="2.3.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#smoking---mar"><i class="fa fa-check"></i><b>2.3.2</b> Smoking - MAR</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#types-of-missing-data"><i class="fa fa-check"></i><b>2.4</b> Types of Missing Data</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#missing-completely-at-random-mcar"><i class="fa fa-check"></i><b>2.4.1</b> Missing Completely at Random (MCAR)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#missing-at-random-mar"><i class="fa fa-check"></i><b>2.4.2</b> Missing at Random (MAR)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#not-missing-at-random-nmar"><i class="fa fa-check"></i><b>2.4.3</b> Not Missing at Random (NMAR)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#tabulate-missing-ness"><i class="fa fa-check"></i><b>2.5</b> Tabulate Missing-ness</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#funrnituretable1"><i class="fa fa-check"></i><b>2.5.1</b> <code>funrniture::table1()</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitff_glimpse"><i class="fa fa-check"></i><b>2.5.2</b> <code>finalfit::ff_glimpse()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#plot-missing-ness"><i class="fa fa-check"></i><b>2.6</b> Plot Missing-ness</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitmissing_plot"><i class="fa fa-check"></i><b>2.6.1</b> <code>finalfit::missing_plot()</code></a></li>
+<li class="chapter" data-level="2.6.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#vimaggr"><i class="fa fa-check"></i><b>2.6.2</b> <code>VIM::aggr()</code></a></li>
+<li class="chapter" data-level="2.6.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitmissing_pairs"><i class="fa fa-check"></i><b>2.6.3</b> <code>finalfit::missing_pairs()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>3</b> </a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="section.html"><a href="section.html#missmechtestmcarnormality"><i class="fa fa-check"></i><b>3.0.1</b> <code>MissMech::TestMCARNormality()</code></a></li>
+<li class="chapter" data-level="3.0.2" data-path="section.html"><a href="section.html#littles-test-revised-littlemcar"><i class="fa fa-check"></i><b>3.0.2</b> Little’s Test, revised ‘LittleMCAR’</a></li>
+<li class="chapter" data-level="3.1" data-path="section.html"><a href="section.html#test-associations-mar"><i class="fa fa-check"></i><b>3.1</b> Test Associations (MAR)</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="section.html"><a href="section.html#finalfitmissing_compare"><i class="fa fa-check"></i><b>3.1.1</b> <code>finalfit::missing_compare()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html"><i class="fa fa-check"></i><b>4</b> Multivariate Imputation by Chained Equations (MICE)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#the-mice-package"><i class="fa fa-check"></i><b>4.1</b> The <code>mice</code> package</a></li>
+<li class="chapter" data-level="4.2" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#multiple-impute-the-missing-values"><i class="fa fa-check"></i><b>4.2</b> multiple impute the missing values</a></li>
+<li class="chapter" data-level="4.3" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#run-the-model-on-each-imputate-datset"><i class="fa fa-check"></i><b>4.3</b> Run the model on each imputate datset</a></li>
+<li class="chapter" data-level="4.4" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#pool-the-results-into-one-set-of-results"><i class="fa fa-check"></i><b>4.4</b> pool the results into one set of results</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -168,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered" number="">
+<div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 
 </div>
@@ -177,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="survival-analysis-basics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariate-imputation-by-chained-equations-mice.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

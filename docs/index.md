@@ -1,7 +1,7 @@
 --- 
 title: "Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics"
 author: "Sarah Schwartz & Tyson Barrett"
-date: "Last updated: 2020-10-29"
+date: "Last updated: 2021-03-05"
 documentclass: book
 description: "Room for Future Expansion."
 knit: "bookdown::render_book"

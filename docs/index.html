@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics</title>
   <meta name="description" content="Room for Future Expansion." />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 
 <link rel="next" href="survival-analysis-basics.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -147,6 +146,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="survival-analysis-basics.html"><a href="survival-analysis-basics.html"><i class="fa fa-check"></i><b>1</b> Survival Analysis Basics</a></li>
+<li class="chapter" data-level="2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html"><i class="fa fa-check"></i><b>2</b> Missing Data: Explore Patterns and Test Associations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load Packages</a></li>
+<li class="chapter" data-level="2.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#dataset-orientation"><i class="fa fa-check"></i><b>2.2</b> Dataset Orientation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#dimentions"><i class="fa fa-check"></i><b>2.2.1</b> Dimentions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#variable-names"><i class="fa fa-check"></i><b>2.2.2</b> Variable Names</a></li>
+<li class="chapter" data-level="2.2.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#structure"><i class="fa fa-check"></i><b>2.2.3</b> Structure</a></li>
+<li class="chapter" data-level="2.2.4" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#glimpse"><i class="fa fa-check"></i><b>2.2.4</b> Glimpse</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#create-smoking-variable"><i class="fa fa-check"></i><b>2.3</b> Create Smoking Variable</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#smoking---mcar"><i class="fa fa-check"></i><b>2.3.1</b> Smoking - MCAR</a></li>
+<li class="chapter" data-level="2.3.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#smoking---mar"><i class="fa fa-check"></i><b>2.3.2</b> Smoking - MAR</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#types-of-missing-data"><i class="fa fa-check"></i><b>2.4</b> Types of Missing Data</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#missing-completely-at-random-mcar"><i class="fa fa-check"></i><b>2.4.1</b> Missing Completely at Random (MCAR)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#missing-at-random-mar"><i class="fa fa-check"></i><b>2.4.2</b> Missing at Random (MAR)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#not-missing-at-random-nmar"><i class="fa fa-check"></i><b>2.4.3</b> Not Missing at Random (NMAR)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#tabulate-missing-ness"><i class="fa fa-check"></i><b>2.5</b> Tabulate Missing-ness</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#funrnituretable1"><i class="fa fa-check"></i><b>2.5.1</b> <code>funrniture::table1()</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitff_glimpse"><i class="fa fa-check"></i><b>2.5.2</b> <code>finalfit::ff_glimpse()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#plot-missing-ness"><i class="fa fa-check"></i><b>2.6</b> Plot Missing-ness</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitmissing_plot"><i class="fa fa-check"></i><b>2.6.1</b> <code>finalfit::missing_plot()</code></a></li>
+<li class="chapter" data-level="2.6.2" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#vimaggr"><i class="fa fa-check"></i><b>2.6.2</b> <code>VIM::aggr()</code></a></li>
+<li class="chapter" data-level="2.6.3" data-path="missing-data-explore-patterns-and-test-associations.html"><a href="missing-data-explore-patterns-and-test-associations.html#finalfitmissing_pairs"><i class="fa fa-check"></i><b>2.6.3</b> <code>finalfit::missing_pairs()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>3</b> </a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="section.html"><a href="section.html#missmechtestmcarnormality"><i class="fa fa-check"></i><b>3.0.1</b> <code>MissMech::TestMCARNormality()</code></a></li>
+<li class="chapter" data-level="3.0.2" data-path="section.html"><a href="section.html#littles-test-revised-littlemcar"><i class="fa fa-check"></i><b>3.0.2</b> Little’s Test, revised ‘LittleMCAR’</a></li>
+<li class="chapter" data-level="3.1" data-path="section.html"><a href="section.html#test-associations-mar"><i class="fa fa-check"></i><b>3.1</b> Test Associations (MAR)</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="section.html"><a href="section.html#finalfitmissing_compare"><i class="fa fa-check"></i><b>3.1.1</b> <code>finalfit::missing_compare()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html"><i class="fa fa-check"></i><b>4</b> Multivariate Imputation by Chained Equations (MICE)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#the-mice-package"><i class="fa fa-check"></i><b>4.1</b> The <code>mice</code> package</a></li>
+<li class="chapter" data-level="4.2" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#multiple-impute-the-missing-values"><i class="fa fa-check"></i><b>4.2</b> multiple impute the missing values</a></li>
+<li class="chapter" data-level="4.3" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#run-the-model-on-each-imputate-datset"><i class="fa fa-check"></i><b>4.3</b> Run the model on each imputate datset</a></li>
+<li class="chapter" data-level="4.4" data-path="multivariate-imputation-by-chained-equations-mice.html"><a href="multivariate-imputation-by-chained-equations-mice.html#pool-the-results-into-one-set-of-results"><i class="fa fa-check"></i><b>4.4</b> pool the results into one set of results</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -171,13 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Encyclopedia of Quantitative Methods in R, vol. 7: Additional Topics</h1>
 <p class="author"><em>Sarah Schwartz &amp; Tyson Barrett</em></p>
-<p class="date"><em>Last updated: 2020-10-29</em></p>
+<p class="date"><em>Last updated: 2021-03-05</em></p>
 </div>
-<div id="welcome" class="section level1 unnumbered" number="">
+<div id="welcome" class="section level1 unnumbered">
 <h1>Welcome</h1>
 <p>Backgroup and links to other volumes of this encyclopedia may be found at the <a href="https://cehs-research.github.io/eBooks/">Encyclopedia’s Home Website</a>.</p>
 <p><img src="images/common/EQM_v7_header.png" /></p>
-<div id="blocked-notes" class="section level2 unnumbered" number="">
+<div id="blocked-notes" class="section level2 unnumbered">
 <h2>Blocked Notes</h2>
 <p>Thoughout all the eBooks in this encyclopedia, several small secitons will be blocked out in the following ways:</p>
 <div class="rmdconstruct">
@@ -206,14 +254,14 @@ These blocks denote <strong>LINKS</strong> to other websites. This may include i
 </p>
 </div>
 </div>
-<div id="code-and-output" class="section level2 unnumbered" number="">
+<div id="code-and-output" class="section level2 unnumbered">
 <h2>Code and Output</h2>
 <p>This is how <span class="math inline">\(R\)</span> code is shown:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <p>This is what the output of the <span class="math inline">\(R\)</span> code above will look:</p>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div id="the-authors" class="section level2 unnumbered" number="">
+<div id="the-authors" class="section level2 unnumbered">
 <h2>The Authors</h2>
 <table>
 <thead>
@@ -269,7 +317,7 @@ Dr. Tyson Barrett
 </tr>
 </tbody>
 </table>
-<div id="why-choose-r" class="section level3 unnumbered" number="">
+<div id="why-choose-r" class="section level3 unnumbered">
 <h3>Why choose R ?</h3>
 <div class="rmdlink">
 <p>
@@ -277,7 +325,7 @@ Dr. Tyson Barrett
 </p>
 </div>
 </div>
-<div id="fyi" class="section level3 unnumbered" number="">
+<div id="fyi" class="section level3 unnumbered">
 <h3>FYI</h3>
 <p>This entire encyclopedia is written in <span class="math inline">\(R Markdown\)</span>, using <span class="math inline">\(R Studio\)</span> as the text editor and the <code>bookdown</code> package to turn a collection of markdown documents into a coherent whole. The book’s source code is hosted on GitHub. If you notice typos or other issues, feel free to email either of the authors.</p>
 <p>This work is licensed under the <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode">Attribution-NonCommercial-NoDerivatives 4.0 International</a> License.</p>

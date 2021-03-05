@@ -1,0 +1,112 @@
+# Multivariate Imputation by Chained Equations (MICE)
+
+## The `mice` package  
+
+[Package Website link](https://amices.org/mice/)
+
+> The mice package implements a method to deal with missing data. The package creates multiple imputations (replacement values) for multivariate missing data. The method is based on **Fully Conditional Specification**, where each incomplete variable is imputed by a separate model. The `mice` algorithm can impute mixes of continuous, binary, unordered categorical and ordered categorical data. In addition, `mice` can impute continuous two-level data, and maintain consistency between imputations by means of passive imputation. Many diagnostic plots are implemented to inspect the quality of the imputations.
+
+[Winnipeg workshop: Handling missing data in `R` with `mice`](https://amices.org/Winnipeg/)
+
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(mice)
+```
+
+
+```{r, eval=FALSE}
+?nhanes
+```
+
+
+
+```{r}
+nhanes
+```
+
+
+```{r}
+tibble::glimpse(nhanes)
+```
+
+
+
+```{r}
+summary(nhanes)
+```
+
+
+```{r}
+df_nhanes <- nhanes %>% 
+  dplyr::mutate(age = factor(age,
+                             levels = c(1, 2,3),
+                             labels = c("20-39", "40-59", "60+"))) %>% 
+  dplyr::mutate(hyp = factor(hyp,
+                             levels = c(1, 2),
+                             labels = c("no", "yes")))
+```
+
+```{r}
+summary(df_nhanes)
+```
+
+
+
+```{r}
+mice::md.pattern(df_nhanes)
+```
+
+## multiple impute the missing values
+
+```{r}
+imp <- mice::mice(data = df_nhanes,   #name of dataset
+                  m = 4,              # number of copies
+                  seed = 432)
+```
+
+```{r}
+imp
+```
+
+
+
+```{r}
+mice::stripplot(imp, chl,
+                pch = 19,
+                xlab = "Imputation number")
+```
+
+
+
+```{r}
+fit_lm_orig <- lm(chl ~ age + bmi + hyp,
+                  data = df_nhanes)
+```
+
+```{r}
+summary(fit_lm_orig)
+```
+
+## Run the model on each imputate datset
+
+```{r}
+fit_lm_imp <- with(imp, lm(chl ~ age + bmi + hyp))
+```
+
+
+```{r}
+fit_lm_imp
+```
+
+## pool the results into one set of results
+
+```{r}
+fit_lm_pooled <-mice::pool(fit_lm_imp)
+```
+
+
+```{r}
+summary(fit_lm_pooled)
+```
+

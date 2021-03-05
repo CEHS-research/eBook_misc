@@ -1,0 +1,415 @@
+# Missing Data: Explore Patterns and Test Associations
+
+## Load Packages
+
+These packages should already be installed on your computer.
+
+```{r, message=FALSE,  error=FALSE, warning=FALSE, results='hide'}
+library(tidyverse)
+library(VIM)
+library(naniar)
+library(finalfit)
+library(MissMech)
+library(norm)
+```
+
+## Dataset Orientation
+
+The `colon_s` dataset is contained in the `finalfit` package.
+
+
+```{r, eval=FALSE}
+?colon_s
+```
+
+```{r}
+colon_s
+```
+
+### Dimentions
+
+```{r}
+dim(colon_s)
+```
+
+### Variable Names
+
+```{r}
+names(colon_s)
+```
+
+### Structure
+
+```{r}
+str(colon_s)
+```
+
+### Glimpse
+
+```{r}
+tibble::glimpse(colon_s)
+```
+
+
+
+## Create Smoking Variable
+
+
+
+blog post: [“Five Steps for missing data with ‘finalfit’ “ by Ewen Harris](https://www.r-bloggers.com/2018/08/five-steps-for-missing-data-with-finalfit/)
+
+* `smokin_mcar` Smoking missing completely at random, same rate of missing-ness regardless of any other variables
+* `smoking_mar` Smoking missing conditional on patient sex, different rates of missing-ness dependant on sex
+
+```{r}
+set.seed(1)
+
+
+colon_s <- colon_s %>% 
+  dplyr::group_by(sex.factor) %>% 
+  dplyr::mutate(smoking_mcar = dplyr::case_when(sex.factor == "Female" ~ sample(c("Smoker", "Non-smoker", NA), 
+                                                                                size = n(),
+                                                                                replace = TRUE,
+                                                                                prob = c(0.15, 0.75, 0.10)),
+                                                sex.factor == "Male"   ~ sample(c("Smoker", "Non-smoker", NA), 
+                                                                                size = n(), 
+                                                                                replace = TRUE,
+                                                                                prob = c(0.25, 0.65, 0.10)))) %>% 
+  dplyr::mutate(smoking_mar = dplyr::case_when(sex.factor == "Female" ~ sample(c("Smoker", "Non-smoker", NA), 
+                                                                               size = n(),
+                                                                               replace = TRUE,
+                                                                               prob = c(0.1, 0.5, 0.4)),
+                                               sex.factor == "Male"   ~ sample(c("Smoker", "Non-smoker", NA), 
+                                                                               size = n(), 
+                                                                               replace = TRUE,
+                                                                               prob = c(0.15, 0.75, 0.1)))) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate_at(vars(starts_with("smoking")),
+                   as.factor)
+
+```
+
+### Smoking - MCAR
+
+Missing rate are the same for both genders.
+
+```{r}
+colon_s %>% 
+  dplyr::group_by(sex.factor, smoking_mcar) %>% 
+  dplyr::tally() %>% 
+  dplyr::group_by(sex.factor) %>% 
+  dplyr::mutate(prop = n/sum(n)) %>% 
+  dplyr::ungroup() %>% 
+  ggplot(aes(x = sex.factor,
+             y = prop,
+             group = smoking_mcar,
+             fill  = smoking_mcar)) +
+  geom_col(position = 'fill') +
+  geom_text(aes(label = ifelse(prop >= 0.07, 
+                               paste0(sprintf("%.0f", prop*100), "%"), 
+                               "")),
+            position = position_stack(vjust=0.5), 
+            colour = "white") 
+```
+
+
+
+
+### Smoking - MAR
+
+Missing rate depends on gender.
+
+```{r}
+colon_s %>% 
+  dplyr::group_by(sex.factor, smoking_mar) %>% 
+  dplyr::tally() %>% 
+  dplyr::group_by(sex.factor) %>% 
+  dplyr::mutate(prop = n/sum(n)) %>% 
+  dplyr::ungroup() %>% 
+  ggplot(aes(x = sex.factor,
+             y = prop,
+             group = smoking_mar,
+             fill  = smoking_mar)) +
+  geom_col(position = 'fill') +
+  geom_text(aes(label = ifelse(prop >= 0.07, 
+                               paste0(sprintf("%.0f", prop*100), "%"), 
+                               "")),
+            position = position_stack(vjust=0.5), 
+            colour = "white") 
+```
+
+```{r}
+tibble::glimpse(colon_s)
+```
+
+
+
+
+## Types of Missing Data
+
+Rubin defined three types of missing data:
+
+### Missing Completely at Random (MCAR)
+
+MCAR occurs when there is a simple probability that data will be missing, and that probability is unrelated to anything else in your study. For example, a patient can miss a follow up visit because there is an accident on the highway and they simply can't get to the visit.
+
+### Missing at Random (MAR)
+
+MAR happens when the missingness is related to information in your study, but **all** the relevant information to predict missingness is in the existing dataset. An example might be a weight loss study in which people drop out if their trajectory is that they are gaining weight. If you can estimate that trajectory for each person before anyone drops out, and see that those whose slope is positive subsequently drop out, you could take that as MAR.
+
+### Not Missing at Random (NMAR)
+
+NMAR is like MAR in that the missingness is related to what is happening in your study, but differs in that the data that are related to the missingness is included in the data that are missing. For instance, if you are studying a treatment for vertigo / 'woozy-ness', but anytime a patient is really woozy, they don't show up for the follow-up visit. Thus, all the high values are missing, and they are missing because they are high!
+
+
+
+## Tabulate Missing-ness
+
+### `funrniture::table1()`
+
+```{r}
+colon_s %>% 
+  dplyr::group_by(sex.factor) %>% 
+  furniture::table1("Age, years" = age,
+                    "Sex, binary" = sex.factor,
+                    "Number of Nodes" = nodes,
+                    "Extent of spread" = extent.factor,
+                    "Perforation" = perfor.factor,
+                    "Mortality, 5 years" = mort_5yr,
+                    "Smoking (MCAR)" = smoking_mcar,
+                    "Smoking (MAR)" = smoking_mar,
+                    total = TRUE,
+                    na.rm = FALSE,
+                    digits = 2,
+                    output = "markdown")
+```
+
+
+
+### `finalfit::ff_glimpse()`
+
+
+```{r}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  finalfit::ff_glimpse()           
+```
+
+
+
+
+
+## Plot Missing-ness
+
+### `finalfit::missing_plot()`
+
+#### Report on all variables
+
+```{r}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  finalfit::missing_plot()
+```
+
+#### Report on a Subset of variables
+
+```{r, fig.width=4, fig.height=8}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  finalfit::missing_pattern()
+```
+
+
+
+
+### `VIM::aggr()`
+
+
+```{r}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  VIM::aggr(numbers = TRUE,   # shows the number to the far right
+            prop    = FALSE)  # shows counts instead of proportions
+```
+\clearapge
+
+### `finalfit::missing_pairs()`
+
+
+```{r, comment=FALSE, message=FALSE, fig.width=6, fig.height=7}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  finalfit::missing_pairs()
+```
+
+
+
+
+```{r, comment=FALSE, message=FALSE, fig.width=6, fig.height=7}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  finalfit::missing_pairs(position = "fill")
+```
+
+
+
+## Test for Equality of Covariance (MCAR)
+
+### `MissMech::TestMCARNormality()`
+
+The main purpose of this package is to test whether the missing data mechanism, for an incompletely observed data set, is one of **missing completely at random (MCAR)**. 
+
+As a by product, however, this package has the capabilities of :
+* imputing incomplete data
+* performing a test to determine whether data have a multivariate normal distribution
+* performing a test of equality of covariances for groups
+* obtaining normal-theory maximum likelihood estimates for mean and covariance when data are incomplete. 
+
+The **test of MCAR** follows the methodology proposed by *Jamshidian and Jalal (2010)*. It is based on testing **equality of covariances between groups having identical missing data patterns**. 
+
+The data are imputed, using two options of normality and distribution free, and the **test of equality of covariances** between groups with identical missing data patterns is performed also with options of assuming normality (Hawkins test) or non-parametrically. 
+
+Users can optionally use their own method of data imputation as well.
+
+Multiple imputation is an additional feature of the program that can be used as a diagnostic tool to help identify cases or variables that **contribute to rejection of MCAR**, when the MCAR test is rejected *(See Jamshidian and Jalal, 2010 for details)*. 
+
+As explained in *Jamshidian, Jalal, and Jansen (2014)*, this package can also be used for imputing missing data, test of multivariate normality, and test of equality of covariances between several groups when data are completely observed.
+
+> Jamshidian, M. and Bentler, P. M. (1999). “ML estimation of mean and covariance structures with missing data using complete data routines.” Journal of Educational and Behavioral Statistics, 24, 21-41.
+
+> Jamshidian, M. and Jalal, S. (2010). “Tests of homoscedasticity, normality, and missing at random for incomplete multivariate data,” Psychometrika, 75, 649-674.
+
+> Jamshidian, M. Jalal, S., and Jansen, C. (2014). “ MissMech: An R Package for Testing Homoscedasticity, Multivariate Normality, and Missing Completely at Random (MCAR),” Journal of Statistical Software, 56(6), 1-31.
+
+```{r}
+colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor,
+                mort_5yr, smoking_mcar, smoking_mar) %>%
+  dplyr::mutate_all(as.numeric) %>%   # categorical variables must be changed to numeric
+  MissMech::TestMCARNormality()
+```
+
+
+**Conclusion:** This provides evidence that missing data on the variables included in this test are **NOT** missing completely at random MCAR by Hawkins test, $p < .001$.  Note, the non-parametric test is also able to reach this conclusion, $p < .001$.
+
+
+
+
+### Little's Test, revised 'LittleMCAR'
+
+> ["R-function for Little’s test for data missing completely at random" by Eric Stemmler (2020/08/14)](https://stats-bayes.com/post/2020/08/14/r-function-for-little-s-test-for-data-missing-completely-at-random/)
+
+Little’s test basically compares the estimated means of each variable between the different missing patterns. These leads to either the decision to use simple random imputation or to model the missingness mechanism and use that model for imputation. The former is appropriate if one can be certain that the means are not different for different missingness patterns, i.e. a non-significant result of the Little’s test. For a more detailed explanation about the different types of missingness *(see Gelman and Hill, 2006)*.
+
+Little himself “… expect[s] the test to be sensitive to departures from the normality assumption, and even under normality the asymptotic null distribution seems unlikely to be reliable unless the sample size is large.” (Little 1988).
+
+
+> Gelman, Andrew, and Jennifer Hill. 2006. Data Analysis Using Regression and Multilevel/Hierarchical Models. Cambridge university press.
+
+> Little, Roderick JA. 1988. “A Test of Missing Completely at Random for Multivariate Data with Missing Values.” Journal of the American Statistical Association 83 (404). Taylor & Francis: 1198–1202.
+
+Statistical inference based on incomplete data typically involves certain assumptions for the missing data mechanism. The validity of these assumptions requires formal evaluation before any further analysis.
+
+For example, likelihood based inference is valid only if the missing data mechanism is ignorable (Rubin 1976), which usually relies on the missing at random assumption (MAR). MAR assumes that the missingness of the data may depend on the observed data, but is independent of the unobserved data. Therefore testing MAR is in general impossible since it requires unavailable information about the missing data. 
+
+Instead, the missing completely at random assumption (MCAR) assumes that the missingness of the data is independent of both the observed and unobserved data, which is stronger than MAR and possible to test using only the observed data. 
+
+When missing data mechanism depends on the unobserved data, data are missing not at random (MNAR). Although the likelihood inference only requires the MAR assumption, testing of MCAR is still of interest in real applications, since many simple missing data methods such as complete case analysis are valid only under MCAR (Chapter 3 of Little and Rubin 1987, also see the blood test example in Section 4). Also the maximum likelihood estimation for the multivariate normal model may be more sensitive to the distributional assumption when the data are not MCAR (Little 1988).
+
+
+>  GitHub repository: https://github.com/rcst/little-test
+
+```{r}
+devtools::source_url("https://raw.githubusercontent.com/rcst/little-test/master/mcar.R")
+```
+
+```{r}
+littletest_mcar <- colon_s %>% 
+  dplyr::select(age, sex.factor, nodes, extent.factor, perfor.factor, obstruct.factor, 
+                mort_5yr, smoking_mcar, smoking_mar,) %>%
+  mcar()
+```
+
+```{r}
+littletest_mcar$missing.patterns
+```
+
+```{r}
+littletest_mcar$amount.missing
+```
+
+
+```{r}
+littletest_mcar$chi.square
+```
+
+
+```{r}
+littletest_mcar$df
+```
+
+
+
+```{r}
+littletest_mcar$p.value
+```
+
+**Conclusion:** This provides evidence that missing data on the variables included in this test are **NOT** missing completely at random MCAR), $\chi^2(95) = 172.92, p < .001$.  Note, this test does not tell you WHICH variables are asociated.
+
+
+
+
+
+
+
+
+
+
+
+## Test Associations (MAR)
+
+### `finalfit::missing_compare()`
+
+
+```{r, warning=FALSE}
+colon_s %>% 
+  finalfit::missing_compare(explanatory = c("age", "sex.factor", "nodes", "extent.factor", "perfor.factor", 
+                                            "smoking_mcar", "smoking_mar"),
+                            dependent = "mort_5yr")
+```
+
+**Conclusion:** There is no evidence that missingness in the five year mortality is associated with any of the variables: age, sex, extent of spread, perforation, and smoking (either varaible), $p's > .066$. 
+
+
+
+```{r, warning=FALSE}
+colon_s %>% 
+  finalfit::missing_compare(explanatory = c("age", "sex.factor", "nodes", "extent.factor", "perfor.factor", 
+                                            "mort_5yr", "smoking_mar"),
+                            dependent = "smoking_mcar")
+```
+
+**Conclusion:** There is no evidence that missingness in the smoking variable (MCAR version) is associated with any of the variables: age, sex, extent of spread, and perforation, $p's > .758$. 
+
+
+
+```{r, warning=FALSE}
+colon_s %>% 
+  finalfit::missing_compare(explanatory = c("age", "sex.factor", "nodes", "extent.factor", "perfor.factor", 
+                                            "mort_5yr", "smoking_mcar"),
+                            dependent = "smoking_mar")
+```
+
+**Conclusion:** There is evidence that missingness in the smoking variable (MAR version) is associated with sex, $p < .001$. We can see there there is a much higher percent of missing values for females (38%) compared to males (12%).
+
+
+
+
+
+
